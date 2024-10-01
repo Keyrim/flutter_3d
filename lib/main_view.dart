@@ -22,6 +22,7 @@ class MainView extends StatelessWidget {
             children: [
               Expanded(
                 child: ModelViewer(
+                  key: Key(state.orientation),
                   src:
                       'https://modelviewer.dev/shared-assets/models/Astronaut.glb',
                   disableZoom: true,
@@ -31,9 +32,8 @@ class MainView extends StatelessWidget {
               ),
               Slider(
                 value: state.x,
-                onChanged: (value) {
-                  bloc.add(MainEventSetOrientation(x: value));
-                },
+                onChanged: (value) =>
+                    bloc.add(MainEventSetOrientation(x: value)),
                 min: -180,
                 max: 180,
                 label: 'X: ${state.x}',
